@@ -22,22 +22,22 @@ import java.util.Map;
  * 员工管理
  */
 @RestController
-@RequestMapping("/admin/employee")
-@Slf4j
-public class EmployeeController {
+    @RequestMapping("/admin/employee")
+    @Slf4j
+    public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private JwtProperties jwtProperties;
+        @Autowired
+        private EmployeeService employeeService;
+        @Autowired
+        private JwtProperties jwtProperties;
 
-    /**
-     * 登录
-     *
-     * @param employeeLoginDTO
-     * @return
-     */
-    @PostMapping("/login")
+        /**
+         * 登录
+         *
+         * @param employeeLoginDTO
+         * @return
+         */
+        @PostMapping("/login")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
 
