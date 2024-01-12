@@ -11,3 +11,8 @@ sky:
     access-key-id: LTAI5tGXiqxowCUQysJHYqF2
     access-key-secret: ag0rCT3EB9opuah6ROaYIdNEREw9of
     bucket-name: sky-takeout-charles
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0

@@ -56,13 +56,33 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .description("苍穹外卖项目接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("管理端接口")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))//指定扫描的包位置
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.admin"))//指定扫描的包位置
                 .paths(PathSelectors.any())
                 .build();
         return docket;
     }
+
+    @Bean
+    public Docket docket2() {
+        log.info("准备生成接口文档");
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title("苍穹外卖项目接口文档")
+                .version("2.0")
+                .description("苍穹外卖项目接口文档")
+                .build();
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("用户端接口")
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.user"))//指定扫描的包位置
+                .paths(PathSelectors.any())
+                .build();
+        return docket;
+    }
+
 
     /**
      * 设置静态资源映射
@@ -83,7 +103,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         //创建一个消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         //需要为消息转换器设置一个对象转换器，对象转换器可以将JAVA对象序列化为json数据
-        converter.setObjectMapper(new JacksonObjectMapper());
+        converter.setObjectMapper(new JacksonObjectMapper()); //JacksonObjectMapper日期处理类
         //将消息转换器加入容器中，0表示排在第一位
         converters.add(0, converter);
     }
