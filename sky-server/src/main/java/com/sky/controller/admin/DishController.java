@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ import java.util.List;
 public class DishController {
 
     @Autowired
-    private DishService dishService;
+        private DishService dishService;
 
     /**
      * 新增菜品
@@ -80,6 +81,15 @@ public class DishController {
         log.info("修改菜品：{}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
+    }
+
+
+    @GetMapping("/list")
+    @ApiOperation("根据分类Id查询菜品")
+    public Result<List<Dish>> list(Long categoryId){
+        log.info("根据分类Id查询菜品{}", categoryId);
+        List<Dish> list = dishService.list(categoryId);
+        return Result.success(list);
     }
 
 }
